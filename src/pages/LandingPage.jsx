@@ -1,13 +1,9 @@
-import React from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
-  return (
-    <>
-    
-    </>
-  )
-}
+  return <></>;
+};
 
-export default LandingPage
+export default LandingPage;
