@@ -1,8 +1,8 @@
-import React from 'react'
-import axios from 'axios'
+import React,{ useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {useCookies} from 'react-cookie'
-import { useState } from 'react'
+import axios from 'axios'
+
 
 const LandingPage = ({bckLanding,logo}) => {
   const [cookies,setCookie] = useCookies();
@@ -10,11 +10,29 @@ const LandingPage = ({bckLanding,logo}) => {
   const [username,setUser] = useState('')
   const [pass,setPass] = useState('')
 
+  // const handleLogin = () =>{
+  //   axios({
+  //     method: 'post',
+  //     url: 'https://virtserver.swaggerhub.com/iffakhry/alta-dashboard/1.0.0/login',
+  //     data: {
+  //       email: username,
+  //       password: pass
+  //     }})
+  //   .then((response)=>{
+  //     console.log("ini test login",response.data)
+  //  })
+  // }
+
+  // useEffect(
+  //   ()=>handleLogin()
+  // )
+
   const handleSubmit = (event) =>{
+    username?navi('/dashboard'):alert("Silahkan isi terlebih dahulu")
     setCookie('Username',username,{path:'/'})
-    navi("/dashboard")
     event.preventDefault();
   }
+
   
   return (
     <div className="container-fluid min-h-screen bg-no-repeat bg-right" style={{ backgroundImage: `url(${bckLanding})` }}>
