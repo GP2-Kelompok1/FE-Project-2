@@ -7,7 +7,6 @@ const NavBar = ({ user, logout }) => {
         <a className="btn btn-ghost normal-case text-xl bg-alta-blue">
           Immersive Dashboard
         </a>
-        {/* <p className='bg-alta-blue grid'>Dashboard</p> */}
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
