@@ -66,10 +66,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-  addMentee {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
 }
