@@ -7,12 +7,15 @@ import MenteeList from './pages/MenteeList'
 import MenteeLog from './pages/MenteeLog'
 import MenteeAdd from './pages/MenteeAdd'
 import Class from './pages/Class'
+import backgroundLanding from './assets/img/landingpage.png'
+import logo from './assets/img/alterra-logo.png'
 
 const App = () => {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<LandingPage/>}/>
+      <Route path='/' element={<LandingPage bckLanding={backgroundLanding}
+      logo={logo}/>}/>
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/user/' element={<User/>}/>
       <Route path='/mentee/list' element={<MenteeList/>}/>
