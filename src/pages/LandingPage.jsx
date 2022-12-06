@@ -63,6 +63,7 @@ const LandingPage = ({bckLanding,logo}) => {
   </div>
   </div>
 </div>
+
   )
 }
 
