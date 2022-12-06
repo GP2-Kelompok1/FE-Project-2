@@ -2,7 +2,7 @@ import React from "react";
 
 const NavBar = ({ user, logout }) => {
   return (
-    <div className="navbar bg-alta-light">
+    <div className="navbar bg-alta-light text-alta-dark">
       <div className="flex flex-1">
         <a className="btn btn-ghost normal-case text-xl bg-alta-blue">
           Immersive Dashboard
