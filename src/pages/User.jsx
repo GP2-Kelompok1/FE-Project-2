@@ -69,6 +69,11 @@ const User = () => {
   </table>
 </div>
     </div>
+    <div className="btn-group flex  place-items-center justify-center">
+  <button className="btn bg-white text-black ">Prev</button>
+  <p className='mx-10'>1 2 3 4 5 </p>
+  <button className="btn bg-white text-black">Next</button>
+</div>
     </>
   )
 }
