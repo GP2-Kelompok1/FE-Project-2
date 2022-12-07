@@ -9,8 +9,8 @@ import { BsFillCalendarMinusFill } from "react-icons/bs";
 function Sidebar() {
   const navigate = useNavigate();
   return (
-    <div>
-      <div className="drawer drawer-mobile">
+    <div className="bg-alta-dark h-full">
+      <div className="drawer drawer-mobile h-screen">
         <div className="drawer hidden lg:contents">
           <div className="bg-alta-dark">
             <div className="w-full flex justify-center pt-10 pb-12">
@@ -81,7 +81,7 @@ function Sidebar() {
             </ul>
           </div>
         </div>
-        <div className="btm-nav fixed lg:hidden z-10">
+        <div className="btm-nav fixed lg:hidden z-10 overflow-hidden w-screen">
           <button onClick={() => navigate("/dashboard")}>
             <BiBarChartSquare size={21} />
           </button>

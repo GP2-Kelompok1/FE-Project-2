@@ -14,7 +14,7 @@ const MenteeLog = () => {
   };
 
   return (
-    <div className="flex flex-row bg-alta-white w-screen h-screen">
+    <div className="flex flex-row bg-alta-white w-full h-screen xl:h-full">
       <div>
         <Sidebar />
       </div>
@@ -24,13 +24,13 @@ const MenteeLog = () => {
           <div className="text-black p-10">
             {/* Data diri mentee */}
             <p className="text-2xl ">Hello Rachman Kamil ! (Kamil)</p>
-            <div className="flex flex-row justify-between pt-2">
+            <div className="flex flex-col xl:flex-row justify-between pt-2">
               <div>
                 <p>Quality Engineer Batch 9</p>
                 <p>IPA</p>
                 <p>SMA Negeri 4 Surabaya</p>
               </div>
-              <div className="pr-40">
+              <div className="pr-40 pt-5 xl:pt-0">
                 <p>Phone: 0812345678910</p>
                 <p>Discord: brother#123</p>
                 <p>Telegram: @ngabers</p>
@@ -39,7 +39,7 @@ const MenteeLog = () => {
             </div>
             {/* Log Feedback Mentee */}
             <div className="text-alta-dark font-medium">
-              <div className="grid justify-items-end pt-5">
+              <div className="grid justify-items-start xl:justify-items-end pt-5">
                 <button className="btn bg-alta-dark text-white">
                   Add new log
                 </button>
@@ -47,8 +47,8 @@ const MenteeLog = () => {
               <div>
                 <ul>
                   <li className="h-2/6 w-full shadow-xl rounded-xl">
-                    <div className="flex flex-row mt-5 p-5">
-                      <div className="basis-1/2">
+                    <div className="flex flex-col xl:flex-row mt-5 p-5">
+                      <div className="basis-1/2 pb-2 xl:pb-0">
                         <p>
                           <span className="font-bold">Status:</span> End of
                           Session
@@ -61,7 +61,7 @@ const MenteeLog = () => {
                           2022.
                         </p>
                       </div>
-                      <div className="border-l-4 pl-10">
+                      <div className="xl:border-l-4 xl:pl-10">
                         <p>
                           Lorem, ipsum dolor sit amet consectetur adipisicing
                           elit. Adipisci, quia laboriosam dolore sed facere
@@ -76,8 +76,8 @@ const MenteeLog = () => {
                     </div>
                   </li>
                   <li className="h-2/6 w-full shadow-xl rounded-xl">
-                    <div className="flex flex-row mt-5 p-5">
-                      <div className="basis-1/2">
+                    <div className="flex flex-col xl:flex-row mt-5 p-5">
+                      <div className="basis-1/2 pb-2 xl:pb-0">
                         <p>
                           <span className="font-bold">Status:</span> End of
                           Session
@@ -90,7 +90,7 @@ const MenteeLog = () => {
                           2022.
                         </p>
                       </div>
-                      <div className="border-l-4 pl-10">
+                      <div className="xl:border-l-4 xl:pl-10">
                         <p>
                           Lorem, ipsum dolor sit amet consectetur adipisicing
                           elit. Adipisci, quia laboriosam dolore sed facere
@@ -105,8 +105,8 @@ const MenteeLog = () => {
                     </div>
                   </li>
                   <li className="h-2/6 w-full shadow-xl rounded-xl">
-                    <div className="flex flex-row mt-5 p-5">
-                      <div className="basis-1/2">
+                    <div className="flex flex-col xl:flex-row mt-5 p-5">
+                      <div className="basis-1/2 pb-2 xl:pb-0">
                         <p>
                           <span className="font-bold">Status:</span> End of
                           Session
@@ -119,7 +119,7 @@ const MenteeLog = () => {
                           2022.
                         </p>
                       </div>
-                      <div className="border-l-4 pl-10">
+                      <div className="xl:border-l-4 xl:pl-10">
                         <p>
                           Lorem, ipsum dolor sit amet consectetur adipisicing
                           elit. Adipisci, quia laboriosam dolore sed facere

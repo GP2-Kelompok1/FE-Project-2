@@ -70,7 +70,48 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const [mentees, setMentees] = useState([]);
+  const [mentees, setMentees] = useState([
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+    {
+      name: "ngab",
+      status: "ok",
+    },
+  ]);
 
   const getAllMentees = () => {
     axios
@@ -82,7 +123,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getAllMentees();
+    // getAllMentees();
     console.log(cookies);
   }, []);
 
@@ -95,20 +136,24 @@ const Dashboard = () => {
     navi("/");
   };
   return (
-    <div className="flex flex-row w-screen h-screen bg-alta-white">
+    <div className="flex flex-row w-full h-full bg-alta-white">
       <div>
         <Sidebar />
       </div>
       <div className="w-full">
-        <NavBar user={cookies.Username} logout={handleLogout} />
+        <NavBar
+          user={cookies.Username}
+          logout={handleLogout}
+          page="Dashboard"
+        />
         <div>
-          <div className="text-black flex flex-row pt-5">
-            <div className="w-1/3 px-10 h-72">
+          <div className="text-black flex flex-col xl:flex-row pt-5">
+            <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Active</p>
                 <div className="h-52">
-                  <ul className="h-full overflow-y-auto overflow-x-hidden">
-                    {mentees?.map((mentee) => {
+                  <ul className="h-28 lg:h-full overflow-y-auto overflow-x-hidden">
+                    {/* {mentees?.map((mentee) => {
                       if (mentee.status === "On Class") {
                         return (
                           <div className="flex flex-row">
@@ -118,30 +163,54 @@ const Dashboard = () => {
                           </div>
                         );
                       }
+                    })} */}
+
+                    {mentees?.map((mentee) => {
+                      return (
+                        <li className="mx-5">
+                          <p>{mentee.name}</p>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="w-1/3 px-10 h-72">
+            <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Placement</p>
                 <div className="h-52">
-                  <ul className="h-full overflow-y-auto overflow-x-hidden"></ul>
+                  <ul className="h-28 lg:h-full overflow-y-auto overflow-x-hidden">
+                    {mentees?.map((mentee) => {
+                      return (
+                        <li className="mx-5">
+                          <p>{mentee.name}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
-            <div className="w-1/3 px-10 h-72">
+            <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Feedback</p>
                 <div className="h-52">
-                  <ul className="p-5 h-full overflow-y-auto overflow-x-hidden"></ul>
+                  <ul className="h-28 lg:h-full overflow-y-auto overflow-x-hidden">
+                    {mentees?.map((mentee) => {
+                      return (
+                        <li className="mx-5">
+                          <p>{mentee.name}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div>
+        <div className="h-fit pb-10">
           <Line
             options={options}
             data={data}
