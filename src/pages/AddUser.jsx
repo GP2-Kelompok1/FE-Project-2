@@ -24,7 +24,7 @@ function AddUser() {
           <div className="grid grid-rows-10 grid-flow-col">
             <label className="label">
               <h5 className="label-text font-semibold">Email</h5>
-              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
+              <input type="email" placeholder="Email" value={username} onChange={(e) => setUser(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
             </label>
           </div>
           <div className="grid grid-rows-10 grid-flow-col my-2 text-sm">
