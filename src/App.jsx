@@ -10,6 +10,7 @@ import Class from "./pages/Class";
 import AddUSer from "./pages/AddUser";
 import backgroundLanding from "./assets/img/landingpage.png";
 import logo from "./assets/img/alterra-logo.png";
+import MenteeDetail from './pages/MenteeDetail';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/mentee/list" element={<MenteeList />} />
         <Route path="/mentee/log" element={<MenteeLog />} />
         <Route path="/mentee/add/page" element={<MenteeAddPage />} />
+        <Route path="/mentee/detail" element={<MenteeDetail />} />
         <Route path="/class" element={<Class />} />
         <Route path="/add/user" element={<AddUSer />} />
       </Routes>
