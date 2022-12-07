@@ -4,6 +4,10 @@ import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { MdEdit } from 'react-icons/md'
+import { HiOutlineSelector } from 'react-icons/hi'
+import { BiDetail } from 'react-icons/bi'
+import { MdDeleteForever } from 'react-icons/md'
 
 const MenteeList = () => {
   const [row, setRows] = useState([]);
@@ -34,15 +38,15 @@ const MenteeList = () => {
       <div>
         <Sidebar />
       </div>
-      <div className="w-screen h-full bg-alta-light">
+      <div className="w-full h-full bg-alta-light">
         <NavBar user={cookies.Username} logout={handleLogout} />
         <div className="bg-alta-white h-5/6 m-5">
           <div>
             <div className="grid justify-end">
-              <div className=" mx-16">
+              <div className=" mx-16 my-10">
                 <div className=" dropdown dropdown-bottom  rounded-box">
                   <label tabIndex={0} className="btn bg-white text-black m-1">
-                    All Class
+                    All Class <HiOutlineSelector className="mx-1"/>
                   </label>
                   <ul
                     tabIndex={0}
@@ -61,7 +65,7 @@ const MenteeList = () => {
                 </div>
                 <div className="mx-2 dropdown dropdown-bottom  rounded-box">
                   <label tabIndex={0} className="btn bg-white text-black m-1">
-                    All Status
+                    All Status <HiOutlineSelector className="mx-1"/>
                   </label>
                   <ul
                     tabIndex={0}
@@ -80,7 +84,7 @@ const MenteeList = () => {
                 </div>
                 <div className="dropdown dropdown-bottom  rounded-box">
                   <label tabIndex={0} className="btn bg-white text-black m-1">
-                    All Category
+                    All Category <HiOutlineSelector className="mx-1"/>
                   </label>
                   <ul
                     tabIndex={0}
@@ -100,11 +104,11 @@ const MenteeList = () => {
               </div>
             </div>
 
-            <div className="my-10 mx-16 rounded-box   min-h-screen">
+            <div className="my-10 mx-16 rounded-box min-h">
               <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                   <thead>
-                    <tr>
+                    <tr className="text-center">
                       <th>NO</th>
                       <th>NAMA</th>
                       <th>CLASS</th>
@@ -118,7 +122,7 @@ const MenteeList = () => {
                   </thead>
                   {row.map((item) => {
                     return (
-                      <tbody className="">
+                      <tbody className="text-center">
                         <tr className="hover">
                           <th>{item.id}</th>
                           <td>{item.full_name}</td>
@@ -126,9 +130,9 @@ const MenteeList = () => {
                           <td>{item.status}</td>
                           <td>{item.education_type}</td>
                           <td>{item.gender}</td>
-                          <td>icon details</td>
-                          <td>icon edit</td>
-                          <td>icon delete</td>
+                          <td><button onClick={()=>navi("/mentee/detail")}><BiDetail/></button></td>
+                          <td><button><MdEdit /></button></td>
+                          <td><button><MdDeleteForever/></button></td>
                         </tr>
                       </tbody>
                     );
@@ -136,9 +140,27 @@ const MenteeList = () => {
                 </table>
               </div>
             </div>
+            <div className="p-5">
+                    <p className="text-center pt-5">Showing 1 to 10</p>
+                  </div>
             <div className="btn-group flex  place-items-center justify-center">
               <button className="btn bg-white text-black ">Prev</button>
-              <p className="mx-10">1 2 3 4 5 </p>
+              <button className="btn bg-white border-none text-black">
+                          1
+                        </button>
+              <button className="btn bg-white border-none text-black">
+                          2
+              </button>
+              <button className="btn bg-white border-none text-black">
+                          3
+                        </button>
+              <button className="btn bg-white border-none text-black">
+                          4
+              </button>
+              <button className="btn bg-white border-none text-black">
+                          5
+              </button>
+              
               <button className="btn bg-white text-black">Next</button>
             </div>
           </div>
