@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 const MenteeList = () => {
-  const [cookies, removeCookie, setCookie] = useCookies();
+  const [cookies, removeCookie] = useCookies();
   const navi = useNavigate();
   const handleLogout = () => {
     removeCookie("Username", { path: "/" });
