@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { BiBarChartSquare } from "react-icons/bi";
 import { BiUserCircle } from "react-icons/bi";
 import { RiUserSettingsLine } from "react-icons/ri";
-import { BsFillCalendarMinusFill } from "react-icons/bs";
+import { AiOutlineCalendar } from "react-icons/ai";
 
 function Sidebar() {
   const navigate = useNavigate();
   return (
     <div className="bg-alta-dark h-full">
-      <div className="drawer drawer-mobile h-screen">
+      <div className="drawer drawer-mobile h-full">
         <div className="drawer hidden lg:contents">
           <div className="bg-alta-dark">
             <div className="w-full flex justify-center pt-10 pb-12">
@@ -70,7 +70,7 @@ function Sidebar() {
                     onClick={() => navigate("/class")}
                   >
                     <div className="basis-1/4">
-                      <BsFillCalendarMinusFill size={28} />
+                      <AiOutlineCalendar size={28} />
                     </div>
                     <div className="basis-3/4">
                       <p>Class</p>
@@ -92,7 +92,7 @@ function Sidebar() {
             <BiUserCircle size={25} />
           </button>
           <button onClick={() => navigate("/class")}>
-            <BsFillCalendarMinusFill size={17} />
+            <AiOutlineCalendar size={17} />
           </button>
         </div>
       </div>

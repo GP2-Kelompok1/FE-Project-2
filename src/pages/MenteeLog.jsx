@@ -19,7 +19,11 @@ const MenteeLog = () => {
         <Sidebar />
       </div>
       <div className="w-full h-full bg-alta-light">
-        <NavBar user={cookies.Username} logout={() => handleLogout()} />
+        <NavBar
+          user={cookies.Username}
+          logout={() => handleLogout()}
+          page="Mentee log"
+        />
         <div className="bg-alta-white h-max m-5">
           <div className="text-black p-10">
             {/* Data diri mentee */}
@@ -134,7 +138,7 @@ const MenteeLog = () => {
                     </div>
                   </li>
                   <div>
-                    <p className="text-center pt-5">Showing # to #</p>
+                    <p className="text-center pt-10">Showing # to #</p>
                   </div>
                   <div className="flex flex-row justify-center pt-3">
                     <div>

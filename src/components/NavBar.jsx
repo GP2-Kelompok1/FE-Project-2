@@ -6,7 +6,7 @@ const NavBar = ({ user, logout, page }) => {
       <div className="flex flex-col xl:flex-row xl:justify-between w-full m-2 xl:p-5">
         <div className="text-start w-full pt-3">
           <button className="font-bold text-xl">Immersive Dashboard</button>
-          <p>Dashboard</p>
+          <p>{page}</p>
         </div>
         <div className="w-full text-start xl:text-end">
           <div className="dropdown xl:dropdown-end">
