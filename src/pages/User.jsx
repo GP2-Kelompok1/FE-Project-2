@@ -4,6 +4,8 @@ import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { MdEdit } from 'react-icons/md'
+import { MdDeleteForever } from 'react-icons/md'
 
 const User = () => {
   const [row, setRows] = useState([]);
@@ -36,20 +38,13 @@ const User = () => {
       <div className="w-full h-full bg-alta-light">
         <NavBar user={cookies.Username} logout={handleLogout} />
         <div className="bg-alta-white h-5/6 m-5">
-          <div>
-            <div className="grid justify-end">
-              <div className="my-4 mx-16">
-                <div className=" dropdown">
-                  <div className="form-control">
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className="input input-bordered"
-                    />
-                  </div>
+          <div className="">
+            <div className="flex flex-row-reverse mx-16">
+            <div className="rounded-box my-10">
+                  <button className="btn btn-primary">Add New</button>
                 </div>
-
-                <button className="mx-2 bg-slate-200 btn btn-ghost btn-box">
+                <div className="my-10">
+                <button className="mx-1 bg-slate-200 btn btn-ghost btn-box ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -65,17 +60,22 @@ const User = () => {
                     />
                   </svg>
                 </button>
-                <div className="left-2 dropdown rounded-box">
-                  <button className="btn btn-primary">Filter</button>
                 </div>
-              </div>
-            </div>
-
-            <div className="my-10 mx-16 rounded-box   min-h-screen">
+                  <div className="form-control my-10">
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="input input-bordered"
+                    />
+                  </div>
+           
+                </div>
+                </div>
+            <div className="my-10 mx-16 rounded-box min-h">
               <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                   <thead>
-                    <tr>
+                    <tr className="text-center">
                       <th>NO</th>
                       <th>FULL NAME</th>
                       <th>EMAIL</th>
@@ -88,7 +88,7 @@ const User = () => {
                   </thead>
                   {row.map((item) => {
                     return (
-                      <tbody className="">
+                      <tbody className="text-center">
                         <tr className="hover">
                           <th>{item.id}</th>
                           <td>{item.full_name}</td>
@@ -96,8 +96,8 @@ const User = () => {
                           <td>{item.team.team_name}</td>
                           <td>{item.role}</td>
                           <td>{item.status}</td>
-                          <td>icon edit</td>
-                          <td>icon delete</td>
+                          <td><button><MdEdit/></button></td>
+                          <td><button><MdDeleteForever/></button></td>
                         </tr>
                       </tbody>
                     );
@@ -105,15 +105,33 @@ const User = () => {
                 </table>
               </div>
             </div>
+            <div className="p-5">
+                    <p className="text-center pt-5">Showing 1 to 10</p>
+                  </div>
             <div className="btn-group flex  place-items-center justify-center">
               <button className="btn bg-white text-black ">Prev</button>
-              <p className="mx-10">1 2 3 4 5 </p>
+              <button className="btn bg-white border-none text-black">
+                          1
+                        </button>
+              <button className="btn bg-white border-none text-black">
+                          2
+              </button>
+              <button className="btn bg-white border-none text-black">
+                          3
+                        </button>
+              <button className="btn bg-white border-none text-black">
+                          4
+              </button>
+              <button className="btn bg-white border-none text-black">
+                          5
+              </button>
+              
               <button className="btn bg-white text-black">Next</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+  
   );
 };
 
