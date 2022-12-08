@@ -192,26 +192,33 @@ const MenteeLog = () => {
                     </div>
                   </li>
                   <div>
-                    <p className="text-center pt-10">Showing # to #</p>
+                    <p className="text-center pt-10">Showing 1 to 10</p>
                   </div>
                   <div className="flex flex-row justify-center pt-3">
-                    <div>
-                      <button className="pr-2">Prev</button>
-                      <div className="btn-group bg-white">
-                        <button className="btn bg-white btn-xs border-none">
-                          1
-                        </button>
-                        <button className="btn bg-white btn-xs border-none">
-                          2
-                        </button>
-                        <button className="btn bg-white btn-xs border-none">
-                          3
-                        </button>
-                        <button className="btn bg-white btn-xs border-none">
-                          4
-                        </button>
-                      </div>
-                      <button className="pl-2">Next</button>
+                    <div className="p-5"></div>
+                    <div className="btn-group flex  place-items-center justify-center gap-2">
+                      <button className="btn hover:text-white hover:bg-alta-dark bg-white text-alta-dark ">
+                        Prev
+                      </button>
+                      <button className="bg-white hover:text-white hover:bg-alta-dark border text-black btn-circle border-alta-dark">
+                        1
+                      </button>
+                      <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle  ">
+                        2
+                      </button>
+                      <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle">
+                        3
+                      </button>
+                      <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle">
+                        4
+                      </button>
+                      <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle">
+                        5
+                      </button>
+
+                      <button className="btn hover:text-white hover:bg-alta-dark bg-white text-alta-dark">
+                        Next
+                      </button>
                     </div>
                   </div>
                 </ul>
