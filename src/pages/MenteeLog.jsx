@@ -5,16 +5,16 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 const MenteeLog = () => {
-  const [cookies, removeCookie] = useCookies();
+  const [cookies, removeCookie] = useCookies("Username");
   const navi = useNavigate();
   const handleLogout = () => {
-    removeCookie("Username", { path: "/" });
+    removeCookie("Username");
     removeCookie("Pass", { path: "/" });
     navi("/");
   };
 
   return (
-    <div className="flex flex-row bg-alta-white w-full h-screen xl:h-full">
+    <div className="flex flex-row bg-alta-white w-full h-full xl:h-full">
       <div>
         <Sidebar />
       </div>
@@ -29,12 +29,12 @@ const MenteeLog = () => {
             {/* Data diri mentee */}
             <p className="text-2xl ">Hello Rachman Kamil ! (Kamil)</p>
             <div className="flex flex-col xl:flex-row justify-between pt-2">
-              <div>
+              <div className="flex-1">
                 <p>Quality Engineer Batch 9</p>
                 <p>IPA</p>
                 <p>SMA Negeri 4 Surabaya</p>
               </div>
-              <div className="pr-40 pt-5 xl:pt-0">
+              <div className="pr-40 pt-5 xl:pt-0 flex-auto">
                 <p>Phone: 0812345678910</p>
                 <p>Discord: brother#123</p>
                 <p>Telegram: @ngabers</p>
@@ -44,9 +44,63 @@ const MenteeLog = () => {
             {/* Log Feedback Mentee */}
             <div className="text-alta-dark font-medium">
               <div className="grid justify-items-start xl:justify-items-end pt-5">
-                <button className="btn bg-alta-dark text-white">
-                  Add new log
-                </button>
+                <label
+                  htmlFor="my-modal"
+                  className="btn bg-alta-dark text-white"
+                >
+                  ADD NEW LOG
+                </label>
+
+                {/* Put this part before </body> tag */}
+                <input type="checkbox" id="my-modal" className="modal-toggle" />
+                <div className="modal text-black">
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Add new log</h3>
+                    <div className="flex flex-col">
+                      <label for="fname">User name:</label>
+                      <input type="text" id="fname" name="fname" />
+                    </div>
+                    <div className="flex justify-between">
+                      <div className="m-0 p-0">
+                        <label for="fname">User name:</label>
+                        <input
+                          type="text"
+                          id="fname"
+                          name="fname"
+                          className="basis-1/2"
+                        />
+                      </div>
+                      <div className="p-0">
+                        <label for="fname">Date:</label>
+                        <input
+                          type="date"
+                          id="fname"
+                          name="fname"
+                          className="basis-1/4 w-full"
+                        />
+                      </div>
+                    </div>
+                    <div className="pt-2">
+                      <label for="text-area">Feedback:</label>
+                      <textarea
+                        id="w3review"
+                        name="w3review"
+                        rows="4"
+                        cols="50"
+                        className="w-full"
+                      ></textarea>
+                    </div>
+
+                    <div className="modal-action">
+                      <label htmlFor="my-modal" className="btn">
+                        ADD LOG
+                      </label>
+                      <label htmlFor="my-modal" className="btn">
+                        CANCEL
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div>
                 <ul>

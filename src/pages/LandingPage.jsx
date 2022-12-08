@@ -9,18 +9,22 @@ const LandingPage = ({ bckLanding, logo }) => {
   const [username, setUser] = useState("");
   const [pass, setPass] = useState("");
 
-  // const handleLogin = () =>{
+  // const handleLogin = () => {
   //   axios({
-  //     method: 'post',
-  //     url: 'https://virtserver.swaggerhub.com/iffakhry/alta-dashboard/1.0.0/login',
+  //     method: "post",
+  //     url: "http://34.87.101.252:80/auth",
   //     data: {
-  //       email: username,
-  //       password: pass
-  //     }})
-  //   .then((response)=>{
-  //     console.log("ini test login",response.data)
-  //  })
-  // }
+  //       email: "joko@mail.com",
+  //       password: "qwerty123",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log("ini test login", response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   // useEffect(
   //   ()=>handleLogin()
@@ -33,8 +37,52 @@ const LandingPage = ({ bckLanding, logo }) => {
   };
 
   return (
-    <div className="bg-white">
-      <div
+    <div className="bg-white lg:h-screen w-full">
+      <div className=" w-full h-screen lg:h-full static flex flex-row justify-between">
+        <div className="rounded-lg w-2/6 h-max z-10 bg-white shadow-xl absolute top-1/4 right-2/6 left-1/4 p-20">
+          <p className="text-4xl text-alta-dark font-bold my-20">
+            Immersive Dashboard
+          </p>
+          <label className="label">
+            <span className="label-text">Email</span>
+          </label>
+          <input
+            type="text"
+            placeholder="email"
+            value={username}
+            onChange={(e) => setUser(e.target.value)}
+            className="input input-bordered bg-white text-black w-full rounded-none"
+            required
+          />
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label>
+          <input
+            type="password"
+            placeholder="password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            className="input input-bordered bg-white text-black w-full rounded-none"
+            required
+          />
+          <div className="flex justify-end pt-5">
+            <button
+              onClick={() => handleSubmit()}
+              className="bg-alta-dark text-white btn"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+        <img
+          src={bckLanding}
+          alt=""
+          className="absolute lg:bottom-0 right-0 rounded-full z-1"
+          width={900}
+        />
+      </div>
+
+      {/* <div
         className="container-fluid min-h-screen bg-no-repeat bg-right"
         style={{ backgroundImage: `url(${bckLanding})` }}
       >
@@ -84,7 +132,7 @@ const LandingPage = ({ bckLanding, logo }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

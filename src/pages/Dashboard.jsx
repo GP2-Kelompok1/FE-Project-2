@@ -128,15 +128,15 @@ const Dashboard = () => {
   }, []);
 
   console.log(mentees);
-  const [cookies, removeCookie] = useCookies();
+  const [cookies, removeCookie] = useCookies("Username");
   const navi = useNavigate();
   const handleLogout = () => {
-    removeCookie("Username", { path: "/" });
+    removeCookie("Username");
     removeCookie("Pass", { path: "/" });
     navi("/");
   };
   return (
-    <div className="flex flex-row w-full h-full bg-alta-white">
+    <div className="flex flex-row w-full 2xl:w-screen h-full 2xl:h-screen bg-alta-white">
       <div>
         <Sidebar />
       </div>
@@ -147,12 +147,12 @@ const Dashboard = () => {
           page="Dashboard"
         />
         <div>
-          <div className="text-black flex flex-col xl:flex-row pt-5">
+          <div className="text-black flex flex-col xl:flex-row pt-5 w-full">
             <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
-              <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
+              <div className="bg-white drop-shadow-xl lg:h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Active</p>
                 <div className="h-52">
-                  <ul className="h-28 lg:h-full overflow-y-auto overflow-x-hidden">
+                  <ul className="h-28 xl:h-full overflow-y-auto overflow-x-hidden">
                     {/* {mentees?.map((mentee) => {
                       if (mentee.status === "On Class") {
                         return (
@@ -180,7 +180,7 @@ const Dashboard = () => {
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Placement</p>
                 <div className="h-52">
-                  <ul className="h-28 lg:h-full overflow-y-auto overflow-x-hidden">
+                  <ul className="h-28 xl:h-full overflow-y-auto overflow-x-hidden">
                     {mentees?.map((mentee) => {
                       return (
                         <li className="mx-5">
@@ -196,7 +196,7 @@ const Dashboard = () => {
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Feedback</p>
                 <div className="h-52">
-                  <ul className="h-28 lg:h-full overflow-y-auto overflow-x-hidden">
+                  <ul className="h-28 xl:h-full overflow-y-auto overflow-x-hidden">
                     {mentees?.map((mentee) => {
                       return (
                         <li className="mx-5">
