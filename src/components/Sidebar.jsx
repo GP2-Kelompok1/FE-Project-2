@@ -27,7 +27,7 @@ function Sidebar() {
                     <div className="basis-1/4">
                       <BiBarChartSquare size={28} />
                     </div>
-                    <div className="basis-3/4">
+                    <div className="basis-3/4 ">
                       <p>Dashboard</p>
                     </div>
                   </a>

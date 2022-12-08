@@ -10,6 +10,7 @@ import { MdDeleteForever } from "react-icons/md";
 const Class = () => {
   const [row, setRows] = useState([]);
   const [cookies, removeCookie] = useCookies();
+  const [loading,setLoading] = useState(false);
   const navi = useNavigate();
   const handleLogout = () => {
     removeCookie("Username", { path: "/" });
@@ -23,7 +24,7 @@ const Class = () => {
         `https://virtserver.swaggerhub.com/FEBRYANZAINAL/Immersive-Dashboard-OpenAPI/1.0.0/classes`
       )
       .then((res) => {
-        console.log(res.data.data);
+        setLoading(true)        
         setRows(res.data.data);
       });
   };
@@ -31,7 +32,7 @@ const Class = () => {
   // console.log("ini data dari api",row)
   useEffect(() => getRows(), []);
   return (
-    <div className="flex flex-row bg-alta-white w-screen h-screen">
+    <div className="flex flex-row bg-alta-white w-full h-screen">
       <div>
         <Sidebar />
       </div>
@@ -39,14 +40,14 @@ const Class = () => {
         <NavBar
           user={cookies.Username}
           logout={handleLogout}
-          page="Class list"
+          page="Class List"
         />
         <div className="bg-alta-white h-5/6 m-5">
           <div>
             <div className="">
               <div className="flex flex-row-reverse mx-16">
                 <div className="rounded-box my-10">
-                  <button className="btn btn-primary">Add New</button>
+                  <button className="btn bg-alta-dark">Add New</button>
                 </div>
                 <div className="my-10">
                   <button className="mx-1 bg-slate-200 btn btn-ghost btn-box ">
@@ -75,26 +76,26 @@ const Class = () => {
                 </div>
               </div>
             </div>
-
+            <div className="border-b-2"></div>
             <div className="my-10 mx-16 rounded-box min-h">
               <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                   <thead>
-                    <tr className="text-center">
+                    <tr className="text-center text-alta-dark">
                       <th>NO</th>
                       <th>NAMA</th>
                       <th>EDIT</th>
                       <th>DELETE</th>
                     </tr>
                   </thead>
-                  {row.map((item) => {
+                  {row && loading === true ? row.map((item) => {
                     return (
                       <tbody className="">
-                        <tr className="hover text-center">
+                        <tr className="hover text-center text-alta-dark">
                           <th>{item.id}</th>
                           <td>{item.class_name}</td>
                           <td>
-                            <button>
+                            <button onClick={()=>navi("/")}>
                               <MdEdit />
                             </button>
                           </td>
@@ -106,32 +107,33 @@ const Class = () => {
                         </tr>
                       </tbody>
                     );
-                  })}
+                  }): <div><h1>Memuat......</h1></div>
+                }
                 </table>
               </div>
-              <div className="p-5">
+              <div className="p-5 text-alta-dark">
                 <p className="text-center pt-5">Showing 1 to 10</p>
               </div>
-              <div className="btn-group flex  place-items-center justify-center">
-                <button className="btn bg-white text-black ">Prev</button>
-                <button className="btn bg-white border-none text-black">
-                  1
-                </button>
-                <button className="btn bg-white border-none text-black">
-                  2
-                </button>
-                <button className="btn bg-white border-none text-black">
-                  3
-                </button>
-                <button className="btn bg-white border-none text-black">
-                  4
-                </button>
-                <button className="btn bg-white border-none text-black">
-                  5
-                </button>
-
-                <button className="btn bg-white text-black">Next</button>
-              </div>
+              <div className="btn-group flex  place-items-center justify-center gap-2">
+              <button className="btn hover:text-white hover:bg-alta-dark bg-white text-alta-dark ">Prev</button>
+              <button className="bg-white hover:text-white hover:bg-alta-dark border text-black btn-circle border-alta-dark">
+                          1
+                        </button>
+              <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle  ">
+                          2
+              </button>
+              <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle">
+                          3
+                        </button>
+              <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle">
+                          4
+              </button>
+              <button className="border-none  bg-white hover:text-white hover:bg-alta-dark btn-circle">
+                          5
+              </button>
+              
+              <button className="btn hover:text-white hover:bg-alta-dark bg-white text-alta-dark">Next</button>
+            </div>
             </div>
           </div>
         </div>
