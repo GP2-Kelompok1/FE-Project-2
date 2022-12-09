@@ -25,17 +25,16 @@ function MenteeAddPage() {
   const [emergencyphone, setEmergencyPhone] = useState('');
   const [emergencystatus, setEmergencyStatus] = useState('');
   const [edutype, setEduType] = useState('');
-  const [graduate, setGraduate] = useState('');
   const [selects, setSelects] = useState('');
-  const [date, setDate] = useState('');
+  const [graduate, setGraduate] = useState('');
   const [gender, setGender] = useState('');
   const [status, setStatus] = useState('');
   const [telegram, setTelegram] = useState('');
-  const [{ educationmajor }, setEducationMajor] = useState({});
-  const [{ institution }, setInstitution] = useState({});
-  const [degree, setDegree] = useState({});
+  const [educationmajor, setEducationMajor] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [degree, setDegree] = useState('');
   const [menteestatus, setMenteeStatus] = useState('');
-  const [id, setId] = useState('');
+  const [id, setId] = useState();
 
   const handleSubmit = (event) => {
     axios
@@ -44,29 +43,29 @@ function MenteeAddPage() {
         {
           mentee_name: username,
           class_id: id,
-          status: menteestatus,
-          gender: gender,
+          email: email,
+          phone: phone,
           current_address: address,
           home_address: homeaddress,
-          email: email,
           telegram: telegram,
-          phone: phone,
+          gender: gender,
+          status: menteestatus,
+          education_type: edutype,
+          education_major: educationmajor,
+          education_graduate: '2022',
+          education_institution: institution,
           emergency_name: emergencyname,
           emergency_phone: emergencyphone,
           emergency_status: emergencystatus,
-          education_type: edutype,
-          education_degree: degree,
-          education_graduate: date,
-          education_institution: institution,
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA2NzcxMTAsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.c5PgNg1TvnPaaULdExj1m9YdllIf4h-Av7-wlEK4M-o`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA3MzU5NzgsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.3jpYCkt5MrAYBEkQjWhRwnlPj9S4VifA03DoeU1_trk`,
           },
         }
       )
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.data);
       });
 
     event.preventDefault();
@@ -246,7 +245,7 @@ function MenteeAddPage() {
                   <div className="grid grid-rows-10 grid-flow-col">
                     <label className="label">
                       <h5 className="label-text font-semibold">Graduate</h5>
-                      <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-3/4  input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
+                      <input type="text" value={graduate} onChange={(e) => setGraduate(e.target.value)} className="w-3/4  input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
                     </label>
                   </div>
                   <div className="grid">

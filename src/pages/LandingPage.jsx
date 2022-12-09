@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 const LandingPage = ({ bckLanding, logo }) => {
   const [cookies, setCookie] = useCookies();
   const navi = useNavigate();
-  const [username, setUser] = useState("");
-  const [pass, setPass] = useState("");
+  const [username, setUser] = useState('');
+  const [pass, setPass] = useState('');
 
   // const handleLogin = () => {
   //   axios({
@@ -31,55 +31,31 @@ const LandingPage = ({ bckLanding, logo }) => {
   // )
 
   const handleSubmit = (event) => {
-    username ? navi("/dashboard") : alert("Silahkan isi terlebih dahulu");
-    setCookie("Username", username, { path: "/" });
+    username ? navi('/dashboard') : alert('Silahkan isi terlebih dahulu');
+    setCookie('Username', username, { path: '/' });
     event.preventDefault();
   };
 
   return (
-    <div className="bg-white lg:h-screen w-full">
+    <div className="bg-white lg:h-screen w-full rounded">
       <div className=" w-full h-screen lg:h-full static flex flex-row justify-between">
         <div className="rounded-lg w-2/6 h-max z-10 bg-white shadow-xl absolute top-1/4 right-2/6 left-1/4 p-20">
-          <p className="text-4xl text-alta-dark font-bold my-20">
-            Immersive Dashboard
-          </p>
+          <p className="text-4xl text-alta-dark font-bold my-10">Immersive Dashboard</p>
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input
-            type="text"
-            placeholder="email"
-            value={username}
-            onChange={(e) => setUser(e.target.value)}
-            className="input input-bordered bg-white text-black w-full rounded-none"
-            required
-          />
+          <input type="text" placeholder="email" value={username} onChange={(e) => setUser(e.target.value)} className="input input-bordered bg-white text-black w-full rounded-none" required />
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input
-            type="password"
-            placeholder="password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-            className="input input-bordered bg-white text-black w-full rounded-none"
-            required
-          />
+          <input type="password" placeholder="password" value={pass} onChange={(e) => setPass(e.target.value)} className="input input-bordered bg-white text-black w-full rounded-none" required />
           <div className="flex justify-end pt-5">
-            <button
-              onClick={() => handleSubmit()}
-              className="bg-alta-dark text-white btn"
-            >
+            <button onClick={() => handleSubmit()} className="bg-alta-dark text-white btn">
               Login
             </button>
           </div>
         </div>
-        <img
-          src={bckLanding}
-          alt=""
-          className="absolute lg:bottom-0 right-0 rounded-full z-1"
-          width={900}
-        />
+        <img src={bckLanding} alt="" className="absolute lg:bottom-0 right-0 rounded-full z-1" width={900} />
       </div>
 
       {/* <div
