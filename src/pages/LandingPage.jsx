@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
 const LandingPage = ({ bckLanding, logo }) => {
   const [cookies, setCookie] = useCookies();
-  const navi = useNavigate();
+  const navigate = useNavigate();
   const [username, setUser] = useState("");
   const [pass, setPass] = useState("");
+  const [login, setLogin] = useState();
 
-  // const handleLogin = () => {
-  //   axios({
-  //     method: "post",
-  //     url: "http://34.87.101.252:80/auth",
-  //     data: {
-  //       email: "joko@mail.com",
-  //       password: "qwerty123",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       console.log("ini test login", response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // useEffect(
-  //   ()=>handleLogin()
-  // )
+  const authApi = () => {
+    axios({
+      method: "post",
+      url: "http://34.87.101.252:80/auth",
+      data: {
+        email: username,
+        password: pass,
+      },
+    })
+      .then((response) => {
+        setCookie("Token", response.data.data.token);
+        setLogin(response);
+        alert("Login successful");
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        alert("Login Failed");
+      });
+  };
 
   const handleSubmit = (event) => {
-    username ? navi("/dashboard") : alert("Silahkan isi terlebih dahulu");
+    username && pass ? authApi() : alert("Silahkan isi terlebih dahulu");
     setCookie("Username", username, { path: "/" });
     event.preventDefault();
   };
@@ -39,8 +39,8 @@ const LandingPage = ({ bckLanding, logo }) => {
   return (
     <div className="bg-white lg:h-screen w-full">
       <div className=" w-full h-screen lg:h-full static flex flex-row justify-between">
-        <div className="rounded-lg w-2/6 h-max z-10 bg-white shadow-xl absolute top-1/4 right-2/6 left-1/4 p-20">
-          <p className="text-4xl text-alta-dark font-bold my-20">
+        <div className="rounded-lg w-full xl:w-2/6 xl:h-max z-10 bg-white shadow-xl absolute bottom-0 xl:top-1/4 xl:right-2/6 xl:left-1/4 p-5 xl:p-20">
+          <p className="text-4xl text-alta-dark font-bold my-2 xl:my-20">
             Immersive Dashboard
           </p>
           <label className="label">

@@ -27,7 +27,7 @@ const MenteeLog = () => {
         <div className="bg-alta-white h-max m-5">
           <div className="text-black p-10">
             {/* Data diri mentee */}
-            <p className="text-2xl ">Hello Rachman Kamil ! (Kamil)</p>
+            <p className="text-2xl ">Hello Kesayangan Mamah ! (Kamil)</p>
             <div className="flex flex-col xl:flex-row justify-between pt-2">
               <div className="flex-1">
                 <p>Quality Engineer Batch 9</p>

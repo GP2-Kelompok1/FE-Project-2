@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
+import NavBar from "../components/NavBar";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -63,78 +66,57 @@ export const data = {
   ],
 };
 
-const baseUrl = `https://virtserver.swaggerhub.com/FEBRYANZAINAL/Immersive-Dashboard-OpenAPI/1.0.0/`;
-const endPoint = baseUrl + `mentees?limit=10&offset=1`;
-import NavBar from "../components/NavBar";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-
 const Dashboard = () => {
-  const [mentees, setMentees] = useState([
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-    {
-      name: "ngab",
-      status: "ok",
-    },
-  ]);
-
-  const getAllMentees = () => {
-    axios
-      .get(endPoint)
-      .then((response) => {
-        setMentees(response.data.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    // getAllMentees();
-    console.log(cookies);
-  }, []);
-
-  console.log(mentees);
+  const [mentees, setMentees] = useState([]);
   const [cookies, removeCookie] = useCookies("Username");
+  const [activeCounter, setActiveCounter] = useState([]);
+  const [placementCounter, setPlacementCounter] = useState("");
+  const [interviewCounter, setInterviewCounter] = useState("");
   const navi = useNavigate();
   const handleLogout = () => {
+    removeCookie("Token");
     removeCookie("Username");
-    removeCookie("Pass", { path: "/" });
     navi("/");
   };
+
+  const getAllMentees = async () => {
+    await axios
+      .get(`http://34.87.101.252:80/mentees`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA2NzcxMTAsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.c5PgNg1TvnPaaULdExj1m9YdllIf4h-Av7-wlEK4M-o`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        // setMentees(res.data.data);
+        handleCounter(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleCounter = (res) => {
+    res.data.data.map((data) => {
+      if (data.status === "Active") {
+        setActiveCounter((activeCounter) => [...activeCounter, data]);
+      }
+      if (data.status === "Placement") {
+        setPlacementCounter((placementCounter) => [...placementCounter, data]);
+      }
+
+      if (data.status === "Interview") {
+        setInterviewCounter((interviewCounter) => [...interviewCounter, data]);
+      }
+    });
+  };
+
+  console.log(activeCounter);
+
+  useEffect(() => {
+    getAllMentees();
+  }, []);
+
   return (
     <div className="flex flex-row w-full 2xl:w-screen h-full 2xl:h-screen bg-alta-white">
       <div>
@@ -151,61 +133,25 @@ const Dashboard = () => {
             <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
               <div className="bg-white drop-shadow-xl lg:h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Active</p>
-                <div className="h-52">
-                  <ul className="h-28 xl:h-full overflow-y-auto overflow-x-hidden">
-                    {/* {mentees?.map((mentee) => {
-                      if (mentee.status === "On Class") {
-                        return (
-                          <div className="flex flex-row">
-                            <li className="mx-5">
-                              <p>{mentee.full_name}</p>
-                            </li>
-                          </div>
-                        );
-                      }
-                    })} */}
-
-                    {mentees?.map((mentee) => {
-                      return (
-                        <li className="mx-5">
-                          <p>{mentee.name}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+                <p className="text-center pt-10 text-7xl pb-6 xl:pt-20 xl:text-9xl text-alta-dark ">
+                  {activeCounter.length / 2}
+                </p>
               </div>
             </div>
             <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
                 <p className="text-center pt-5">Mentee Placement</p>
-                <div className="h-52">
-                  <ul className="h-28 xl:h-full overflow-y-auto overflow-x-hidden">
-                    {mentees?.map((mentee) => {
-                      return (
-                        <li className="mx-5">
-                          <p>{mentee.name}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+                <p className="text-center pt-10 text-7xl pb-6 xl:pt-20 xl:text-9xl text-alta-dark ">
+                  {placementCounter.length / 2}
+                </p>
               </div>
             </div>
             <div className="w-full xl:w-1/3 px-10 h-48 xl:h-72 mb-5 xl:mb-0">
               <div className="bg-white drop-shadow-xl h-full border-t-8 border-alta-dark ">
-                <p className="text-center pt-5">Mentee Feedback</p>
-                <div className="h-52">
-                  <ul className="h-28 xl:h-full overflow-y-auto overflow-x-hidden">
-                    {mentees?.map((mentee) => {
-                      return (
-                        <li className="mx-5">
-                          <p>{mentee.name}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+                <p className="text-center pt-5">Mentee Interview</p>
+                <p className="text-center pt-10 text-7xl pb-6 xl:pt-20 xl:text-9xl text-alta-dark ">
+                  {interviewCounter.length / 2}
+                </p>
               </div>
             </div>
           </div>
