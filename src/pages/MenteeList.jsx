@@ -16,7 +16,7 @@ const MenteeList = () => {
   const [filter,setFilter]= useState("All Class")
   const [filterStatus,setFilterStatus] = useState("All Status")
   const [filterCate,setFilterCate] = useState("All Category")
-  const [giveRows,setGiverows] = useState()
+
   const navi = useNavigate();
   const handleLogout = () => {
     removeCookie("Username", { path: "/" });
@@ -40,19 +40,7 @@ const MenteeList = () => {
       });
   };
 
-  const gRows = async() => {
-    await axios
-      .post(
-        `http://34.87.101.252:80/mentees`
-    ,{headers:{
-        Authorization : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA2NzcxMTAsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.c5PgNg1TvnPaaULdExj1m9YdllIf4h-Av7-wlEK4M-o`
-      }})
-      .then((res) => {
-        setLoading(true)
-
-        setGiverows(res.data.data);
-      });
-  };
+  
 
   // console.log("ini data dari api",row)
   useEffect(() => {getRows()}, []);
@@ -68,83 +56,8 @@ const MenteeList = () => {
           <div>
           <div className="flex flex-row-reverse mx-16">
             <div className="rounded-box my-10">
-            <label htmlFor="my-modal-4" className="btn bg-alta-dark">ADD NEW</label>
-
-{/* Put this part before </body> tag */}
-<form action="">
-<input type="checkbox" id="my-modal-4" className="modal-toggle" />
-<label htmlFor="my-modal-4" className="modal cursor-pointer">
-  <label className="modal-box relative" htmlFor="">
-  <div className="bg-white p-5 rounded ">
-                          <h1 className="mb-5 font-semibold jutify-content-center text-center text-xl text-alta-dark ">
-                            Add New Mentee Data
-                          </h1>
-
-                          <div className="flex flex-col justify-items-center">
-                            <input
-                              type="text"
-                              className="border border-alta-dark p-2 rounded mb-5"
-                              placeholder="name"
-                            />
-                            <input
-                              type="text"
-                              className="border border-alta-dark p-2 rounded mb-5"
-                              placeholder="class"
-                            />
-                            <input
-                              type="text"
-                              className="border border-alta-dark p-2 rounded mb-5"
-                              placeholder="status"
-                            />
-                           <div className="flex flex-wrap my-2 mb-10 text-sm">
-                    <label className="mt-2 mr-10 col-form-label font-semibold">
-                      Gender
-                    </label>
-                    <div className="mt-2 mr-10">
-                      {" "}
-                      Female
-                      <input
-                        type="radio"
-                        className="mx-2 mt-1"
-                        name="isyes"
-                        value="1"
-                      ></input>
-                    </div>
-                    <div className=" mt-2">
-                      {" "}
-                      Male
-                      <input
-                        type="radio"
-                        className="mx-2 mt-1"
-                        name="isyes"
-                        value="0"
-                      ></input>
-                    </div>
-                  </div>
-                            <input
-                              type="text"
-                              className="border border-alta-dark p-2 rounded mb-5"
-                              placeholder="Phone"
-                            />{" "}
-                            <input
-                              type="text"
-                              className="border border-alta-dark p-2 rounded mb-5"
-                              placeholder="email@example.com"
-                            />
-                          </div>
-                        </div>
-                        <div className="modal-action flex flex-col justify-center items-center ">
-                          <label
-                            htmlFor="my-modal-6"
-                            className="btn bg-alta-dark hover:bg-blue-800 focus:outoptionne-none focus:ring-2  focus:ring-blue-500"
-                          >
-                            Add
-                          </label>
-                        </div>
-  </label>
-</label>
-</form>
-                </div>
+            <label htmlFor="my-modal-4" className="btn bg-alta-dark" onClick={()=>{navi("/mentee/add/page")}}>ADD NEW</label>
+            </div>
                 <div className="my-10">
                 <button className="mx-1 bg-slate-200 btn btn-ghost btn-box ">
                   <svg
