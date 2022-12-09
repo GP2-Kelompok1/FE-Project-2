@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import { BiChevronDown } from 'react-icons/bi';
 import Sidebar from '../components/Sidebar';
 import NavBar from '../components/NavBar';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { Radio } from '@material-tailwind/react';
 import axios from 'axios';
-
+import { useSelect } from '@material-tailwind/react';
 function MenteeDetail() {
   const [cookies, removeCookie] = useCookies();
   const navi = useNavigate();
@@ -24,181 +25,244 @@ function MenteeDetail() {
   const [emergencyphone, setEmergencyPhone] = useState('');
   const [emergencystatus, setEmergencyStatus] = useState('');
   const [edutype, setEduType] = useState('');
-  const [majortype, setMajorType] = useState('');
+  const [selects, setSelects] = useState('');
   const [graduate, setGraduate] = useState('');
-  const [date, setDate] = useState('');
+  const [gender, setGender] = useState('');
+  const [status, setStatus] = useState('');
+  const [telegram, setTelegram] = useState('');
+  const [educationmajor, setEducationMajor] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [degree, setDegree] = useState('');
+  const [menteestatus, setMenteeStatus] = useState('');
+  const [id, setId] = useState();
 
-  const [showMenteeDetail, setMenteeDetail] = useState(false);
-  const handleOnClose = () => setMenteeDetail(false);
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
+    axios
+      .get(
+        `http://34.87.101.252:80/mentees`,
+        {
+          mentee_name: username,
+          class_id: id,
+          email: email,
+          phone: phone,
+          current_address: address,
+          home_address: homeaddress,
+          telegram: telegram,
+          gender: gender,
+          status: menteestatus,
+          education_type: edutype,
+          education_major: educationmajor,
+          education_graduate: '2022',
+          education_institution: institution,
+          emergency_name: emergencyname,
+          emergency_phone: emergencyphone,
+          emergency_status: emergencystatus,
+        },
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA3MzU5NzgsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.3jpYCkt5MrAYBEkQjWhRwnlPj9S4VifA03DoeU1_trk`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data.data);
+      });
+
     event.preventDefault();
   };
-
-  const API_URL = 'https://www.example.com/api/';
-
-  axios
-    .get(API_URL)
-    .then((response) => {
-      // Do something with the response data
-    })
-    .catch((error) => {
-      // Handle any errors
-    });
 
   return (
     <div className="flex flex-row bg-alta-white w-full h-full">
       <div>
         <Sidebar />
       </div>
-      <div className="w-full h-full bg-alta-light">
-        <NavBar user={cookies.Username} logout={handleLogout} page="Mentee detail" />
+      <div className="w-full bg-alta-light">
+        <NavBar user={cookies.Username} logout={handleLogout} page="Mentee Detail" />
+        <div className="grid">
+          <div className="flex justify-start items-start sm:mt-5">
+            <AiOutlineArrowLeft size={20} className="ml-5" />
+            <button onClick={() => navi(-1)} className="text-md font-medium text-alta-dark hover:text-blue-800 mx-5 ">
+              Back
+            </button>
+          </div>
+        </div>
         <div className="bg-alta-white h-5/6 m-5">
           <div>
             <div className=" mt-10 ">
-              <div className="w-full bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-                <h2 className="my-5 text-[#17345F] font-bold">Mentee Data</h2>
-                <form className="mb-0 my-2 mx-3 " action="#" method="POST " onSubmit={() => handleSubmit()}>
+              <div className="w-full bg-white py-8 px-6 shadow rounded-lg sm:px-10 ">
+                <h2 className="my-5 text-alta-dark font-bold text-xl">Mentee Data</h2>
+
+                <form onSubmit={() => handleSubmit()} className="mb-0 my-2 mx-3 " action="#" method="POST ">
                   <div className="grid grid-rows-10 grid-flow-col">
-                    <label className="label text-sm font-medium text-gray-700">
-                      <h5 className="label-text font-semibold">Name</h5>
+                    <label className="label text-sm font-medium text-gray-700 ">
+                      <h5 className="label-text font-semibold flex-col sm:flex-row text-alta-dark">Name</h5>
                       <input type="text" placeholder="Almira Mahsa" value={username} onChange={(e) => setUser(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
                     </label>
                   </div>
                   <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label text-sm font-medium text-gray-700 ">
+                      <h5 className="label-text font-semibold flex-col sm:flex-row text-alta-dark">Mentee Id</h5>
+                      <input type="number" placeholder="29" value={id} onChange={(e) => setId(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                    </label>
+                  </div>
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label text-sm font-medium text-gray-700 ">
+                      <h5 className="label-text font-semibold flex-col sm:flex-row text-alta-dark">Mentee Status</h5>
+                      <input type="text" placeholder="Placement" value={menteestatus} onChange={(e) => setMenteeStatus(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                    </label>
+                  </div>
+                  <div className="grid grid-rows-10 grid-flow-col">
                     <label className="label">
-                      <h5 className="label-text font-semibold">Address</h5>
-                      <input type="text" placeholder="Taman Tiara Regency" value={address} onChange={(e) => setAddress(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                      <h5 className="label-text font-semibold text-alta-dark">Address</h5>
+                      <input type="text" placeholder="Surabaya" value={address} onChange={(e) => setAddress(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
                     </label>
                   </div>
                   <div className="grid grid-rows-10 grid-flow-col">
                     <label className="label">
                       <h5 className="label-text font-semibold">Home Address</h5>
-                      <input type="text" placeholder="Ploso Timur, Surabaya" value={homeaddress} onChange={(e) => setHomeAddress(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                      <input type="text" placeholder="Surabaya" value={homeaddress} onChange={(e) => setHomeAddress(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
                     </label>
                   </div>
                   <div className="grid grid-rows-10 grid-flow-col">
                     <label className="label">
                       <h5 className="label-text font-semibold">Email</h5>
-                      <input type="email" placeholder="almiramahsa9@gmail.com" value={username} onChange={(e) => setUser(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
+                      <input type="email" placeholder="Almira@mail.com" value={email} onChange={(e) => setEmail(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
                     </label>
                   </div>
-                  <div className="flex flex-wrap my-2 text-sm">
-                    <label className="mt-2 mr-96 col-form-label font-semibold">Gender</label>
+                  <div className="grid grid-rows-10 grid-flow-col my-2 text-sm ">
+                    <label className="mt-2 my-2 font-semibold">Gender</label>
                     <div className="mt-2">
-                      {' '}
-                      Female
-                      <input type="radio" className="mx-2 mt-1" name="isyes" value="1"></input>
+                      <Radio value="female" name="gender" label="Female" className="mx-2 mt-1" onChange={() => setGender(e.target.value)} />
                     </div>
-                    <div className=" mt-2">
-                      {' '}
-                      Male
-                      <input type="radio" className="mx-2 mt-1" name="isyes" value="0"></input>
+                    <div className="mt-2">
+                      <Radio value="male" name="gender" label="Male" className="mx-2 mt-1" onChange={(e) => setGender(e.target.value)} />
                     </div>
+                  </div>
+
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label">
+                      <h5 className="label-text font-semibold">Phone Number</h5>
+                      <input type="number" placeholder="085646087878" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
+                    </label>
                   </div>
                   <div className="grid grid-rows-10 grid-flow-col">
                     <label className="label">
-                      <h5 className="label-text font-semibold">Phone</h5>
-                      <input type="number" placeholder="085646087878" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
+                      <h5 className="label-text font-semibold">Telegram</h5>
+                      <input type="text" placeholder="Almiramm" value={telegram} onChange={(e) => setTelegram(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
                     </label>
                   </div>
                   <div className="bg-white w-full py-2 flex items-center justify-between rounded text-sm font-semibold">
                     Class
-                    <select className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-[#F8F8F8] opacity-50">
-                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white">Frontend Engineering</option>
-                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white">Backend Engineering</option>
-                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white">Quality Engineering</option>
+                    <select value={selects} onChange={(e) => setSelects(e.target.value)} className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-[#F8F8F8] opacity-50 ">
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="FE">
+                        Frontend Engineer
+                      </option>
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="BE">
+                        Backend Engineer
+                      </option>
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="QA">
+                        Quality Assurance
+                      </option>
                     </select>
                   </div>
                   <div className="grid grid-rows-10 grid-flow-col my-2 text-sm ">
                     <label className="mt-2 my-2 font-semibold">Status</label>
-                    <div className="mt-2 mx-2">
-                      {' '}
-                      Active
-                      <input type="radio" className="mx-2 mt-1" name="isyes" value="1"></input>
-                    </div>
-                    <div className=" mt-2">
-                      {' '}
-                      Non-Active
-                      <input type="radio" className="mx-2 mt-1" name="isyes" value="0"></input>
-                    </div>
-                  </div>
-                  <h2 className="mt-10 mb-5 text-[#17345F] font-bold">Emergency Data</h2>
-                  <div className="grid grid-rows-10 grid-flow-col">
-                    <label className="label">
-                      <h5 className="label-text font-semibold">Name</h5>
-                      <input type="text" placeholder="Loid Roger" value={emergencyname} onChange={(e) => setEmergencyName(e.target.value)} className="w-3/4 input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
-                    </label>
-                  </div>
-                  <div className="grid grid-rows-10 grid-flow-col">
-                    <label className="label">
-                      <h5 className="label-text font-semibold">Phone</h5>
-                      <input type="number" placeholder="0812345678" value={emergencyphone} onChange={(e) => setEmergencyPhone(e.target.value)} className="w-3/4 input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
-                    </label>
-                  </div>
-                  <div className="">
-                    <div className="bg-white w-full flex items-center justify-between rounded font-semibold">
-                      Status
-                      <select className=" w-3/4 h-12  rounded-lg md:text-md text-sm focus:bg-[#F8F8F8] opacity-50">
-                        <option className="text-sm ">Orangtua</option>
-                        <option className="p-2 text-sm hover:bg-sky-500 hover:text-white">Kerabat Dekat</option>
-                        <option className="p-2 text-sm hover:bg-sky-500 hover:text-white">Saudara Kandung</option>
-                        <option className="p-2 text-sm hover:bg-sky-500 hover:text-white">Kerabat Dekat</option>
-                      </select>
-                    </div>
-                  </div>
-                  <h2 className="mt-10 mb-5 text-[#17345F] font-bold">Education Data</h2>
-                  <div className="grid grid-rows-10 grid-flow-col my-2 text-sm ">
-                    <label className="mt-2 my-2 mr-5 font-semibold">Type</label>
                     <div className="mt-2">
-                      {' '}
-                      Informatics
-                      <input type="radio" className="mx-2 mt-1" name="isyes" value="1"></input>
+                      <Radio value="active" name="status" label="Active" className="mx-2 mt-1" onChange={(e) => setStatus(e.target.value)} />
                     </div>
-                    <div className=" mt-2">
-                      {' '}
-                      Non-Informatics
-                      <input type="radio" className="mx-2 mt-1" name="isyes" value="0"></input>
+                    <div className="mt-2">
+                      <Radio value="non_active" name="status" label="Non- Active" className="mx-2 mt-1" onChange={(e) => setStatus(e.target.value)} />
                     </div>
                   </div>
-                  <div className="grid grid-rows-10 grid-flow-col text-sm ">
+                  <h2 className="mt-10 mb-5 my-5 text-[#17345F] font-bold text-xl">Emergency Data</h2>
+                  <div className="grid grid-rows-10 grid-flow-col text-alta-dark">
                     <label className="label">
-                      <h5 className="label-text font-semibold">Education</h5>
-                      <input type="text" placeholder="Informatics" value={majortype} onChange={(e) => setMajorType(e.target.value)} className="w-3/4 focus:bg-[#F8F8F8] opacity-50 input input-bordered text-sm" />
+                      <h5 className="label-text font-semibold">Nurii</h5>
+                      <input type="text" placeholder="Emergency name" value={emergencyname} onChange={(e) => setEmergencyName(e.target.value)} className="w-3/4 input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
                     </label>
                   </div>
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label">
+                      <h5 className="label-text font-semibold">081234567</h5>
+                      <input type="number" placeholder="Phone Number" value={emergencyphone} onChange={(e) => setEmergencyPhone(e.target.value)} className="w-3/4 input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
+                    </label>
+                  </div>
+
+                  <div className="bg-white w-full py-2 flex items-center justify-between rounded text-sm font-semibold">
+                    Emergency Status
+                    <select value={emergencystatus} onChange={(e) => setEmergencyStatus(e.target.value)} className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-[#F8F8F8] opacity-50 ">
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label=" Orangtua">
+                        Orangtua
+                      </option>
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="Saudara Kandung">
+                        Saudara Kandung
+                      </option>
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="Kerabat Dekat">
+                        Kerabat Dekat
+                      </option>
+                    </select>
+                  </div>
+
+                  <h2 className="mt-10 mb-10  text-[#17345F] font-bold text-xl">Education Data</h2>
+                  <div className="grid grid-rows-10 grid-flow-col my-2 text-sm ">
+                    <label className="mt-2 my-2 font-semibold">Background</label>
+                    <div className="mt-2">
+                      <Radio value="informatics" name="eduType" label="Informatics" className="mx-2 mt-1" onChange={(e) => setEduType(e.target.value)} />
+                    </div>
+                    <div className="mt-2">
+                      <Radio value="non_informatics" name="eduType" label="Non-Informatics" onChange={(e) => setEduType(e.target.value)} className="mx-2 mt-1" />
+                    </div>
+                  </div>
+
+                  <div className="bg-white w-full py-2 flex items-center justify-between rounded text-sm font-semibold">
+                    Education Degree
+                    <select value={degree} onChange={(e) => setDegree(e.target.value)} className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-[#F8F8F8] opacity-50 ">
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label=" SMA/SMK">
+                        SMA/SMK
+                      </option>
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="Sarjana">
+                        Sarjana
+                      </option>
+                      <option className="p-2 text-sm hover:bg-sky-500 hover:text-white" label="Magister">
+                        Magister
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label">
+                      <h5 className="label-text font-semibold">Education Background</h5>
+                      <input type="text" placeholder="Geomatics" value={educationmajor} onChange={(e) => setEducationMajor(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                    </label>
+                  </div>
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label">
+                      <h5 className="label-text font-semibold">Education Institute</h5>
+                      <input type="text" placeholder="ITS Surabaya" value={institution} onChange={(e) => setInstitution(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                    </label>
+                  </div>
+
                   <div className="grid grid-rows-10 grid-flow-col">
                     <label className="label">
                       <h5 className="label-text font-semibold">Graduate</h5>
-                      <input type="date" onChange={(e) => setDate(e.target.value)} className="w-3/4  input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
+                      <input type="text" value={graduate} placeholder="2022" onChange={(e) => setGraduate(e.target.value)} className="w-3/4  input input-bordered text-sm focus:bg-[#F8F8F8] opacity-50" />
                     </label>
                   </div>
-                  <div className="flex flex-col justify-end items-end">
-                    <label htmlFor="my-modal-6" className="btn m-10 bg-alta-dark text-sm hover:bg-blue-800 focus:outoptionne-none focus:ring-2  focus:ring-blue-500">
-                      Edit Data
-                    </label>
-
-                    {/* Put this part before </body> tag */}
-                    <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-                    <div className="modal modal-bottom sm:modal-middle">
-                      <div className="modal-box">
-                        <div className="bg-white p-5 rounded w-4/5">
-                          <h1 className="mb-5 font-semibold jutify-content-center text-center text-xl text-alta-dark ">Add New Mentee Data</h1>
-
-                          <div className="flex flex-col justify-items-center">
-                            <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="name" />
-                            <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="address" />
-                            <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="home address" />
-                            <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="email@example.com" />{' '}
-                            <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="email@example.com" />
-                            <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="Phone" /> <input type="text" className="border border-alta-dark p-2 rounded mb-5" placeholder="email@example.com" />
-                          </div>
-                        </div>
-                        <div className="modal-action flex flex-col justify-center items-center ">
-                          <label htmlFor="my-modal-6" className="btn bg-alta-dark hover:bg-blue-800 focus:outoptionne-none focus:ring-2  focus:ring-blue-500">
-                            Save
-                          </label>
-                        </div>
-                      </div>
+                  <div className="grid">
+                    <div className="flex justify-end items-end">
+                      <button
+                        type="submit"
+                        className=" sm:w-1/12 m-12  py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-alta-dark hover:bg-blue-800 focus:outoptionne-none focus:ring-2  focus:ring-blue-500"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        htmlFor="my-modal-4"
+                        type="submit"
+                        className=" sm:w-1/12 m-12  py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-alta-dark hover:bg-blue-800 focus:outoptionne-none focus:ring-2  focus:ring-blue-500"
+                      >
+                        Edit
+                      </button>
                     </div>
                   </div>
                 </form>
