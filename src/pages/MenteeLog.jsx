@@ -196,7 +196,7 @@ const MenteeLog = () => {
                   </div>
                   <div className="flex flex-row justify-center pt-3">
                     <div className="p-5"></div>
-                    <div className="btn-group flex  place-items-center justify-center gap-2">
+                    <div className="btn-group flex place-items-center justify-center gap-2">
                       <button className="btn hover:text-white hover:bg-alta-dark bg-white text-alta-dark ">
                         Prev
                       </button>
