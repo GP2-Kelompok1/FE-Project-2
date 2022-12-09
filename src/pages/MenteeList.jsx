@@ -362,6 +362,9 @@ const MenteeList = () => {
               <button className="btn hover:text-white hover:bg-alta-dark bg-white text-alta-dark">
                 Next
               </button>
+              <label htmlFor="my-modal-4" className="btn bg-alta-dark">
+                ADD NEW
+              </label>
             </div>
           </div>
         </div>
