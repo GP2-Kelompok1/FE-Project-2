@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar';
 import NavBar from '../components/NavBar';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function MenteeDetail() {
   const [cookies, removeCookie] = useCookies();
@@ -33,8 +34,19 @@ function MenteeDetail() {
     event.preventDefault();
   };
 
+  const API_URL = 'https://www.example.com/api/';
+
+  axios
+    .get(API_URL)
+    .then((response) => {
+      // Do something with the response data
+    })
+    .catch((error) => {
+      // Handle any errors
+    });
+
   return (
-    <div className="flex flex-row bg-alta-white w-screen h-screen">
+    <div className="flex flex-row bg-alta-white w-full h-full">
       <div>
         <Sidebar />
       </div>
@@ -70,8 +82,8 @@ function MenteeDetail() {
                       <input type="email" placeholder="almiramahsa9@gmail.com" value={username} onChange={(e) => setUser(e.target.value)} className="w-3/4 input focus:bg-[#F8F8F8] opacity-50 input-bordered text-sm" />
                     </label>
                   </div>
-                  <div className="grid grid-rows-10 grid-flow-col my-2 text-sm">
-                    <label className="mt-2 col-form-label font-semibold">Gender</label>
+                  <div className="flex flex-wrap my-2 text-sm">
+                    <label className="mt-2 mr-96 col-form-label font-semibold">Gender</label>
                     <div className="mt-2">
                       {' '}
                       Female
