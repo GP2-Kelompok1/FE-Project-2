@@ -33,11 +33,12 @@ const LandingPage = ({ bckLanding, logo }) => {
   const handleSubmit = (event) => {
     username && pass ? authApi() : alert("Silahkan isi terlebih dahulu");
     setCookie("Username", username, { path: "/" });
+
     event.preventDefault();
   };
 
   return (
-    <div className="bg-white lg:h-screen w-full">
+    <div className="bg-white lg:h-screen w-full rounded">
       <div className=" w-full h-screen lg:h-full static flex flex-row justify-between">
         <div className="rounded-lg w-full xl:w-2/6 xl:h-max z-10 bg-white shadow-xl absolute bottom-0 xl:top-1/4 xl:right-2/6 xl:left-1/4 p-5 xl:p-20">
           <p className="text-4xl text-alta-dark font-bold my-2 xl:my-20">

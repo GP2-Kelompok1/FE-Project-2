@@ -18,19 +18,22 @@ const Class = () => {
     navi("/");
   };
 
-  const getRows = () => {
-    axios
+  const getRows = async() => {
+    await axios
       .get(
-        `https://virtserver.swaggerhub.com/FEBRYANZAINAL/Immersive-Dashboard-OpenAPI/1.0.0/classes`
-      )
+        `http://34.87.101.252:80/classes`
+    ,{headers:{
+        Authorization : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA2NzcxMTAsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.c5PgNg1TvnPaaULdExj1m9YdllIf4h-Av7-wlEK4M-o`
+      }})
       .then((res) => {
-        setLoading(true)        
+        setLoading(true)
+         console.log("mencoba api bearer",res.data.data) 
         setRows(res.data.data);
       });
   };
 
   // console.log("ini data dari api",row)
-  useEffect(() => getRows(), []);
+  useEffect(() =>{ getRows()}, []);
   return (
     <div className="flex flex-row bg-alta-white w-full h-screen">
       <div>
@@ -82,8 +85,8 @@ const Class = () => {
                 <table className="table table-zebra w-full">
                   <thead>
                     <tr className="text-center text-alta-dark">
-                      <th>NO</th>
-                      <th>NAMA</th>
+                      <th>ID</th>
+                      <th>CLASS</th>
                       <th>EDIT</th>
                       <th>DELETE</th>
                     </tr>

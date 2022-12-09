@@ -18,21 +18,25 @@ const User = () => {
     navi("/");
   };
 
-  const getRows = () => {
-    axios
+  const getRows = async() => {
+    await axios
       .get(
-        `https://virtserver.swaggerhub.com/FEBRYANZAINAL/Immersive-Dashboard-OpenAPI/1.0.0/users?limit=10&offset=1`
-      )
+        `http://34.87.101.252:80/users`
+    ,{headers:{
+        Authorization : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA2NzcxMTAsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.c5PgNg1TvnPaaULdExj1m9YdllIf4h-Av7-wlEK4M-o`
+      }})
       .then((res) => {
         setLoading(true)
+   
         setRows(res.data.data);
       });
   };
 
+
   // console.log("ini data dari api",row)
-  useEffect(() => getRows(), []);
+  useEffect(() => {getRows()}, []);
   return (
-    <div className="flex flex-row bg-alta-white w-full h-screen">
+    <div className="flex flex-row bg-alta-white w-full h-full">
       <div>
         <Sidebar />
       </div>
@@ -78,7 +82,7 @@ const User = () => {
                 <table className="table table-zebra w-full">
                   <thead>
                     <tr className="text-center text-alta-dark">
-                      <th>NO</th>
+                      <th>ID</th>
                       <th>FULL NAME</th>
                       <th>EMAIL</th>
                       <th>TEAM</th>
@@ -95,7 +99,7 @@ const User = () => {
                           <th>{item.id}</th>
                           <td>{item.full_name}</td>
                           <td>{item.email}</td>
-                          <td>{item.team.team_name}</td>
+                          <td>{item.team_id}</td>
                           <td>{item.role}</td>
                           <td>{item.status}</td>
                           <td><button onClick={()=>navi("/add/user")}><MdEdit/></button></td>

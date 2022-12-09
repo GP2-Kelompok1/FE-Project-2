@@ -4,11 +4,13 @@ import { BiChevronDown } from "react-icons/bi";
 import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 function MenteeDetail() {
   const [cookies, removeCookie] = useCookies();
   const navi = useNavigate();
+  const location = useLocation();
   const handleLogout = () => {
     removeCookie("Username", { path: "/" });
     removeCookie("Pass", { path: "/" });
@@ -32,8 +34,26 @@ function MenteeDetail() {
   const onSubmit = (event) => {
     event.preventDefault();
   };
+
+  const idMentee = location?.state?.item?.id;
+
+  const API_URL = `http://34.87.101.252:80/mentees/${idMentee}/`;
+
+  axios
+    .get(API_URL, {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzA2NzcxMTAsInJvbGUiOiJkZWZhdWx0IiwidXNlcklkIjoxfQ.c5PgNg1TvnPaaULdExj1m9YdllIf4h-Av7-wlEK4M-o`,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   return (
-    <div className="flex flex-row bg-alta-white w-screen h-screen">
+    <div className="flex flex-row bg-alta-white w-full h-full">
       <div>
         <Sidebar />
       </div>
@@ -102,8 +122,8 @@ function MenteeDetail() {
                       />
                     </label>
                   </div>
-                  <div className="grid grid-rows-10 grid-flow-col my-2 text-sm">
-                    <label className="mt-2 col-form-label font-semibold">
+                  <div className="flex flex-wrap my-2 text-sm">
+                    <label className="mt-2 mr-96 col-form-label font-semibold">
                       Gender
                     </label>
                     <div className="mt-2">
