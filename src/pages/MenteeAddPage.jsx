@@ -34,6 +34,8 @@ function MenteeAddPage() {
   const [{ educationmajor }, setEducationMajor] = useState({});
   const [{ institution }, setInstitution] = useState({});
   const [degree, setDegree] = useState({});
+  const [menteestatus, setMenteeStatus] = useState('');
+  const [id, setId] = useState('');
 
   const handleSubmit = (event) => {
     axios
@@ -41,8 +43,8 @@ function MenteeAddPage() {
         `http://34.87.101.252:80/mentees`,
         {
           mentee_name: username,
-          class_id: '15',
-          status: telegram,
+          class_id: id,
+          status: menteestatus,
           gender: gender,
           current_address: address,
           home_address: homeaddress,
@@ -96,6 +98,18 @@ function MenteeAddPage() {
                     <label className="label text-sm font-medium text-gray-700 ">
                       <h5 className="label-text font-semibold flex-col sm:flex-row text-alta-dark">Name</h5>
                       <input type="text" placeholder="Name" value={username} onChange={(e) => setUser(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                    </label>
+                  </div>
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label text-sm font-medium text-gray-700 ">
+                      <h5 className="label-text font-semibold flex-col sm:flex-row text-alta-dark">Mentee Id</h5>
+                      <input type="number" placeholder="id" value={id} onChange={(e) => setId(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
+                    </label>
+                  </div>
+                  <div className="grid grid-rows-10 grid-flow-col">
+                    <label className="label text-sm font-medium text-gray-700 ">
+                      <h5 className="label-text font-semibold flex-col sm:flex-row text-alta-dark">Mentee Status</h5>
+                      <input type="text" placeholder="status" value={menteestatus} onChange={(e) => setMenteeStatus(e.target.value)} className="w-3/4 input input-bordered focus:bg-[#F8F8F8] opacity-50 text-sm" />
                     </label>
                   </div>
                   <div className="grid grid-rows-10 grid-flow-col">
@@ -161,7 +175,7 @@ function MenteeAddPage() {
                       <Radio value="non_active" name="status" label="Non- Active" className="mx-2 mt-1" onChange={(e) => setStatus(e.target.value)} />
                     </div>
                   </div>
-                  <h2 className="mt-10 mb-5 text-[#17345F] font-bold text-md">Emergency Data</h2>
+                  <h2 className="mt-10 mb-5 my-5 text-[#17345F] font-bold text-xl">Emergency Data</h2>
                   <div className="grid grid-rows-10 grid-flow-col text-alta-dark">
                     <label className="label">
                       <h5 className="label-text font-semibold">Name</h5>
@@ -190,7 +204,7 @@ function MenteeAddPage() {
                     </select>
                   </div>
 
-                  <h2 className="mt-10 mb-5 text-[#17345F] font-bold text-md">Education Data</h2>
+                  <h2 className="mt-10 mb-10  text-[#17345F] font-bold text-xl">Education Data</h2>
                   <div className="grid grid-rows-10 grid-flow-col my-2 text-sm ">
                     <label className="mt-2 my-2 font-semibold">Background</label>
                     <div className="mt-2">
