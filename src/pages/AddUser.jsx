@@ -31,7 +31,7 @@ function AddUser() {
           full_name: username,
           email: email,
           password: phone,
-          team_id: 1,
+          team_id: '1',
           role: 'default',
           status: 'active',
           permission: 'superuser',
@@ -94,16 +94,16 @@ function AddUser() {
                   <div className="bg-white w-full py-2 flex items-center justify-between rounded text-sm font-semibold">
                     Team
                     <select value={team_id} onChange={(e) => setTeamId(e.target.value)} className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-[#F8F8F8] opacity-50 ">
-                      <option label="1" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
+                      <option label="Academic" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
                         Academic
                       </option>
-                      <option label="2" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
+                      <option label="People" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
                         People
                       </option>
-                      <option label="3" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
+                      <option label="Placement" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
                         Placement
                       </option>
-                      <option label="4" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
+                      <option label="Admission" className="p-2 text-sm hover:bg-sky-500 hover:text-white">
                         Admission
                       </option>
                     </select>
@@ -111,7 +111,7 @@ function AddUser() {
 
                   <div className="bg-white w-full py-2 flex items-center justify-between rounded text-sm font-semibold">
                     Role
-                    <select className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-alta-dark opacity-50">
+                    <select className=" w-3/4 h-10 text-sm rounded-lg md:text-md focus:bg-alta-light opacity-50">
                       <option name={role} onChange={(e) => setRole(e.target.value)} className="p-2 text-sm hover:bg-sky-500 hover:text-white">
                         Default
                       </option>
